@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @video.name %>
+</p>
+
+<% if current_user %>
+  <p>
+    <strong>Watched?:</strong>
+    <%= current_user.watched? @video %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_video_path(@video) %> |
+<%= link_to 'Back', videos_path %>

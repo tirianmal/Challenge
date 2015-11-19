@@ -1,0 +1,1 @@
+RKit.init_all!

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Vagrant</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div id="current_user">
+    <%= container_tag do %>
+      <%= row_tag do %>
+        <%= col_3_tag do %>
+          Current Logged User is : <%= current_user %>
+        <% end %>
+
+        <%= col_6_tag do %>
+          Log in as :
+          <% User.all.each do |user| %>
+            <%= link_to " #{ user }", log_in_path(id: user) %> -
+          <% end %>
+        <% end %>
+
+        <%= col_3_tag class: :text_right do %>
+          <%= link_to "Log out", log_out_path %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div id="current_controller">
+    <%= container_3_tag [:companies, :users, :videos, :badges], id: :current_controller, rows: {cols: {class: 'text-center'}} do |controller| %>
+      <%= link_to controller, send("#{ controller }_path") %>
+    <% end %>
+  </div>
+
+  <%= yield %>
+
+</body>
+</html>
