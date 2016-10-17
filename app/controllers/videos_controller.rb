@@ -10,7 +10,23 @@ class VideosController < ApplicationController
   # GET /videos/1
   # GET /videos/1.json
   def show
+  end
+
+  # POST /videos/1/view
+  def view
+    @video = Video.where(:id => view_params).first
     current_user.try :watch_video, @video
+
+    respond_to do |format|
+      if current_user.save
+        format.html { render :show }
+        format.json { render :show, status: :success }
+      else
+        format.html { render :show }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   # GET /videos/new
@@ -71,5 +87,10 @@ class VideosController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def video_params
       params.require(:video).permit(:title)
+    end
+
+    # shouldn't have been necessary, not used in update, but paranoid so will use
+    def view_params
+      params.require(:id)
     end
 end

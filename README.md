@@ -1,3 +1,23 @@
+Notes from implementer:
+  many functions are not optimized/performance tuned. Many operations involve
+  asking DB for values (even if cached) repeatedly. This would be optimized as
+  needed in future. This was a quick implementation as befits the nature of the
+  exercise
+
+  I do not have experience with RSPEC/CAPYBARA so I've attempted a few tests just
+  to get a feel for the process. So far as I can tell, it is easy enough.
+  However, the 'log_in/X' paths rely on setting session variables and apparently
+  as I have Capybara/Rspec set up, this was NOT persisting. This may be 
+  misunderstanding on my part about set up, or use of C/Rspec. Might be a bug.
+
+  AJAX call to Play in Video#Show was done as a quick hack. I fully expect that 
+  in a full dev environment standards for how to handle all this would have been
+  established and I would have structured the HTML much better to assist in proper
+  updating/re-writing of data on page. Or used a fuller featured framework for same.
+
+  For now, it is what it is.
+
+
 # :warning: DO NOT FORK THIS REPOSITORY :warning:
 
 ## Badge Challenges Application

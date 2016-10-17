@@ -4,7 +4,7 @@
   <h1><%= @user.infos %></h1>
 <% end %>
 
-<%= container_3_tag @user.badges, rows: {cols: {class: 'text-center'}} do |badge| %>
+<%= container_3_tag @user.badges.uniq, rows: {cols: {class: 'text-center'}} do |badge| %>
   <h2><%= badge.name %></h2>
   <div class="symbol">
     <%= fa_icon badge.fa_symbol %>

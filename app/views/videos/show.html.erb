@@ -1,3 +1,19 @@
+<script>
+// purely as a scratch attempt ... would need to write html for the views count
+// ... left as exercise for another time
+$(document).ready(function(){
+
+  $('#play_video')
+    .bind("ajax:success", function(evt, data, status, xhr){
+
+      // Insert response partial into page below the form.
+      $('#watched_value').text("true");
+      // then update the views count ...
+    })
+})
+
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -8,9 +24,19 @@
 <% if current_user %>
   <p>
     <strong>Watched?:</strong>
+    <text id="watched_value">
     <%= current_user.watched? @video %>
+    </text>
   </p>
+  <% if current_user.watched? @video %>
+    <p>
+      <strong>Views:</strong>
+      <%= current_user.times_watched @video %>
+    </p>
+  <% end %>
+
 <% end %>
 
+<%= link_to 'Play', view_video_path(@video), {:method => :post, :remote => true, :id => "play_video"} %> |
 <%= link_to 'Edit', edit_video_path(@video) %> |
 <%= link_to 'Back', videos_path %>

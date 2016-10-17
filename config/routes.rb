@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :videos
+  resources :videos do
+    member do
+      post 'view'
+    end
+  end
 
   resources :badges
 

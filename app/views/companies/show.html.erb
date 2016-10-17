@@ -5,5 +5,25 @@
   <%= @company.name %>
 </p>
 
+<hr/>
+<p>
+  <strong>Badges earned within Company:</strong>
+  <%= container_3_tag @company.unique_badges, rows: {cols: {class: 'text-center'}} do |badge| %>
+    <div class="badge" id="<%= "badge_#{badge.name}" %>">
+    <h2><%= badge.name %></h2>
+    <div class="symbol">
+      <%= fa_icon badge.fa_symbol %>
+    </div>
+    <div class="earned">
+      <label>Users earning this badge: 
+      </label>
+      <text><%= "#{badge.users.select {|user| user.company_id == @company.id }.length}" %>
+      </text>
+    </div>
+    </div>
+  <% end %>
+</p>
+<hr/>
+
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

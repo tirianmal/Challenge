@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606143225) do
+ActiveRecord::Schema.define(version: 20161015000001) do
 
   create_table "badge_users", force: :cascade do |t|
     t.integer  "badge_id"
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20140606143225) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "views",      default: 1
   end
 
   add_index "video_users", ["user_id"], name: "index_video_users_on_user_id"
